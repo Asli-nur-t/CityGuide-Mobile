@@ -12,7 +12,7 @@ CityGuide is a minimal city guide application designed to help users discover ne
 - **Push Notifications:** Get notified when new places are nearby.
 
 ## Screenshots 📸
-*(Add screenshots of the app here once available)*
+*()*
 
 ## Tech Stack 🛠️
 - **Frontend:** Flutter (Dart)
