@@ -1,0 +1,137 @@
+{
+    "welcome": "Hoşgeldiniz",
+    "onBoard": {
+        "page1": {
+            "title" : "Kolay Yönetim",
+            "subTitle" : "Şirket ödeme planınızı kolayca yönetmek için mobil uygulamamızı veya web sitemizi kullanın."
+        },
+        "page2": {
+            "title" : "Kolay Yönetim",
+            "subTitle" : "Şirket ödeme planınızı kolayca yönetmek için mobil uygulamamızı veya web sitemizi kullanın."
+        },
+        "page3": {
+            "title" : "Kolay Yönetim",
+            "subTitle" : "Şirket ödeme planınızı kolayca yönetmek için mobil uygulamamızı veya web sitemizi kullanın."
+        }
+    },
+    "general": {
+        "appName": "para plan",
+        "yes": "evet",
+        "no": "hayır",
+        "error": "hata",
+        "warning": "uyarı",
+        "home": "ana sayfa",
+        "bills": "faturalar",
+        "save": "kaydet",
+        "edit": "düzenle",
+        "general": "genel",
+        "delete": "sil",
+        "cancel": "İptal",
+        "confirm": "onayla",
+        "areyousure": "Onaylıyor musunuz",
+        "filter": "filtrele",
+        "bill_detail": "fatura detayı",
+        "okey": "tamam",
+        "unfortunately": "maalesef",
+        "couldntFind": "aradığınız kriterlere uygun kayıt bulunamadı",
+        "receiveTimeout": "Sunucu ile bağlantı kurulamadı",
+        "pleaseTryAgain": "Lütfen tekrar deneyin",
+        "search": "ara",
+        "sortingOption": "sıralama seçeneği",
+        "sort": "sırala",
+        "add": "ekle",
+        "badRequest": "Geçersiz istek",
+        "clearFilter": "Filtreyi Temizle",
+        "options": "Seçenekler",
+        "skip" : "sonraki",
+        "done" : "tamamla",
+        "send": "Gönder",
+        "proceed":"İlerle",
+        "getBack":"Geri Dön",
+        "attention":"Dikkat"
+    },
+    "home": {
+        "tab1": "Login",
+        "tab2": "SignUp",
+        "email": "E-posta",
+        "password": "Şifre",
+        "forgotText": "Şifremi Unuttum",
+        "login": "Login",
+        "dontAccount": "Dont have account"
+    },
+    "login": {
+        "title" : "HESABINIZA GİRİŞ YAPIN",
+        "loginButton" : "Giriş Yap",
+        "forgotPassword" : "Şifremi unuttum",
+        "enterPassword" : "Şifrenizi giriniz",
+        "exampleMail" : "example@mail.com",
+        "emailRequired" : "E-posta Girişi Zorunludur",
+        "invalidEmail" : "E-posta Geçerli Değil",
+        "passwordRequired" : "Şifre Girişi Zorunludur",
+        "passwordCannotExceed24Character" : "Şifreniz 24 karakterden uzun olamaz",
+        "usernumber":"Şirket numarasını giriniz",
+        "userNumberInfoText":"Yukarıdaki kutucuğa Para Plan tarafından verilen şirket numarasını giriniz",
+        "tenantInActive":"Hatalı şirket numarası",
+        "tenantNotFound":"Geçerli bir kullanıcı numarası giriniz"
+    },
+    "forgot_password": {
+        "title" : "Şifremi unuttum",
+        "subtitle" : "Şifre Sıfırlama Bağlantısı Almak İçin Aşağıya E-Postanızı Girin",
+        "mailTitle" : "E-posta Adresiniz",
+        "forgotPassword" : "ŞİFRENİZİ Mİ UNUTTUNUZ",
+        "button":"İlerle",
+        "enterPassword" : "Şifrenizi giriniz",
+        "exampleMail" : "example@mail.com",
+        "emailRequired" : "E-posta Girişi Zorunludur",
+        "invalidEmail" : "E-posta Geçerli Değil",
+        "passwordResetText":"Şifre sıfırlama mail adresine gönderildi. Spam klasörünü kontrol edin. Gelmediyse",
+        "sendAgain": "\"Tekrar gönder\"e tıklayın",
+        "sendAgainButton":"Tekrar Gönder",
+        "sent":"GÖNDERİLDİ",
+        "backLogin":"Girişe Geri Dön"
+
+    },
+    "reset_password": {
+        "title": "YENİ ŞİFRE BELİRLEYİN",
+        "subtitle": "Parolanız en az asağıdakileri içermelidir;",
+        "password": "Şifre",
+        "min_length": "8 karakter",
+        "upper_lower_case": "1 büyük ve küçük harf",
+        "number": "1 numara",
+        "symbol": "1 sembol",
+        "newPassword": "Yeni Şifrenizi Girin",
+        "confirmPassword": "Yeni Şifrenizi Tekrar Girin",
+        "confirmPasswordRequired":"Sifreniz Başarıyla Değiştirildi!",
+        "confirmPasswordRequiredSubtitle":"Yeni şifre ile giriş yapmak için oturum açma sayfasına geri dönebilirsiniz",
+        "confirmPasswordRequiredButton":"Oturum açmak için geri dön",
+        "passwordMismatch" :"Şifre Güncelleme işlemi başarısız",
+        "passwordRequired" : "Şifre Girişi Zorunludur",
+        "termsAcceptance": "Kullanıcı Sözleşmesini okudum, onaylıyorum",
+        "submit": "Gönder"
+    },
+    "verify_password":{
+        "title": "DOGRULAMA KODUNUZU GİRİN\n",
+        "subtitle": "Lütfen e-posta adresinize gönderilen 6 haneli doğrulama kodunu asağıdaki alana giriniz.",
+        "enterCode": "Doğrulama Kodunu Girin",
+        "button":"Doğrula",
+        "codeRequired": "Doğrulama Kodu Girişi Zorunludur",
+        "invalidCode": "Geçersiz Doğrulama Kodu",
+        "codeSent":"Doğrulama Kodu Gönderildi. Gelmediyse spam klasörünü kontrol ediniz. ",
+        "resend":"Kodu Tekrar Gönder"
+    },
+    "error_screen": {
+        "title": "BiLGiLENDiRME",
+        "description": "Şu anda Para Plan Mobil'de bakım çalışması yapılmaktadır. ",
+        "appreciation":"Anlayışınız için teşekkür ederiz.",
+        "ok_button" : "Tamam",
+        "server_error": "Üzgünüz, bir sunucu hatasi olustu. \n Lütfen daha sonra tekrar deneyin.",
+        "unauthorized": "Erişim yetkiniz yok, Giriş yapmayı deneyebilir veya yardım almak için bizimle iletişime geçebilirsiniz.",
+        "page_not_found":"Üzgünüz, aradiginiz sayfa bulunamıyor.\nLütfen URL'yi kontrol edin veya ana sayfaya geri dönmeyi deneyin.",
+        "server_error_title":"SUNUCU HATASI",
+        "unauthorize_title": "YETKİSİZ ERİŞİM",
+        "page_not_found_title": "SAYFA BULUNAMADI"
+
+
+
+    }
+}
