@@ -1,0 +1,31 @@
+
+<?xml version="1.0" encoding ="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="primaryMain">#2E7D32</color>
+    <color name="primaryAlternativeLight">#787EFF</color>
+    <color name="secondaryMain">#6D788D</color>
+    <color name="secondaryAlternativeLight">#7F889B</color>
+    <color name="infoMain">#26C6F9</color>
+    <color name="infoAlternativeLight">#40CDFA</color>
+    <color name="successMain">#72E128</color>
+    <color name="successAlternativeLight">#83E542</color>
+    <color name="warningMain">#FDB528</color>
+    <color name="warningAlternativeLight">#FDBE42</color>
+    <color name="errorMain">#FF4D49</color>
+    <color name="errorAlternativeLight">#FF625F</color>
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#4C4E64</color>
+    <color name="textDisabled">#4C4E6461</color>
+    <color name="bodyBackground">#F7F7F9</color>
+    <color name="checkBlue">#228BFF</color>
+    <color name="primaryBackground">#ECEDFF</color>
+    <color name="divider">#4C4E64</color>
+    <color name="warningBackground">#FDB528</color>
+    <color name="successBackground">#72E128</color>
+    <color name="errorBackground">#FF4D49</color>
+    <color name="iconColor">#6e6d6d73</color>
+    <color name="primaryBlue">#2196F3</color>
+    <color name="subTextColor">#2E415E</color>
+</resources>
