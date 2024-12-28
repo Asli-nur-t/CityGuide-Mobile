@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -5,6 +6,29 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    Future<void> signUp() async {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+        // Kullanıcı oluşturulduktan sonra adını güncelleme
+        await userCredential.user?.updateDisplayName(nameController.text);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Kayıt başarılı!')),
+        );
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Hata: ${e.message}')),
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign Up'),
@@ -20,6 +44,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: nameController,
               decoration: InputDecoration(
                 labelText: 'Name',
                 border: OutlineInputBorder(
@@ -29,6 +54,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(
@@ -38,6 +64,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -48,9 +75,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Sign up işlemleri buraya gelecek
-              },
+              onPressed: signUp,
               child: const Text('Sign Up'),
             ),
           ],

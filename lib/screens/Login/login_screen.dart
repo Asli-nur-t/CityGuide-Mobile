@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -5,6 +6,27 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    Future<void> signIn() async {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+        // Başarılı giriş sonrası ana ekrana yönlendirme
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Giriş başarılı!')),
+        );
+        Navigator.pushReplacementNamed(context, '/home'); // Ana ekran rotası
+      } on FirebaseAuthException catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Hata: ${e.message}')),
+        );
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
@@ -20,6 +42,7 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(
@@ -29,6 +52,7 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -39,9 +63,7 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Giriş işlemleri buraya eklenecek
-              },
+              onPressed: signIn,
               child: const Text('Login'),
             ),
             TextButton(
