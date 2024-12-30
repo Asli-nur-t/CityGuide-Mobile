@@ -15,11 +15,10 @@ class LoginScreen extends StatelessWidget {
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
-        // Başarılı giriş sonrası ana ekrana yönlendirme
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Giriş başarılı!')),
         );
-        Navigator.pushReplacementNamed(context, '/home'); // Ana ekran rotası
+        Navigator.pushReplacementNamed(context, '/home');
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Hata: ${e.message}')),

@@ -1,3 +1,6 @@
+// Created by https://github.com/Asli-nur-t
+// Date: 2024-12-28
+
 import 'package:cityguidemob/screens/Login/login_screen.dart';
 import 'package:cityguidemob/screens/detail/details_screen.dart';
 import 'package:cityguidemob/screens/home/home_screen.dart';
@@ -15,9 +18,7 @@ class AppRoutes {
     signup: (context) => const SignUpScreen(),
     home: (context) => const HomeScreen(),
     details: (contest) => const DetailsScreen(
-          placeName: '',
-          description: '',
-          address: '',
+          placeId: '',
         ),
   };
 }
