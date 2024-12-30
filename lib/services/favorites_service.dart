@@ -1,33 +1,26 @@
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
 import '../models/place.dart';
 
 class FavoritesService {
-  static const String favoritesKey = 'favorite_places';
+  static const String favoritesBoxName = 'favorites';
 
-  Future<void> addFavorite(Place place) async {
-    final prefs = await SharedPreferences.getInstance();
-    final favorites = await getFavorites();
-    favorites.add(place);
-    prefs.setString(
-        favoritesKey, jsonEncode(favorites.map((e) => e.toMap()).toList()));
+  static Future<void> addFavorite(Place place) async {
+    final box = await Hive.openBox<Place>(favoritesBoxName);
+    await box.put(place.id, place);
   }
 
-  Future<void> removeFavorite(String placeId) async {
-    final prefs = await SharedPreferences.getInstance();
-    final favorites = await getFavorites();
-    favorites.removeWhere((place) => place.id == placeId);
-    prefs.setString(
-        favoritesKey, jsonEncode(favorites.map((e) => e.toMap()).toList()));
+  static Future<void> removeFavorite(String id) async {
+    final box = await Hive.openBox<Place>(favoritesBoxName);
+    await box.delete(id);
   }
 
-  Future<List<Place>> getFavorites() async {
-    final prefs = await SharedPreferences.getInstance();
-    final data = prefs.getString(favoritesKey);
-    if (data != null) {
-      final List<dynamic> decoded = jsonDecode(data);
-      return decoded.map<Place>((item) => Place.fromMap(item)).toList();
-    }
-    return [];
+  static Future<List<Place>> getFavorites() async {
+    final box = await Hive.openBox<Place>(favoritesBoxName);
+    return box.values.toList();
+  }
+
+  static Future<bool> isFavorite(String id) async {
+    final box = await Hive.openBox<Place>(favoritesBoxName);
+    return box.containsKey(id);
   }
 }
