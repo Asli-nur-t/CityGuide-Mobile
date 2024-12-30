@@ -1,10 +1,13 @@
 import 'package:cityguidemob/models/place.dart';
 import 'package:cityguidemob/screens/detail/details_screen.dart';
 import 'package:cityguidemob/screens/favorites/favorites_screen.dart';
+import 'package:cityguidemob/screens/recent_places/recent_places_screen.dart';
 import 'package:cityguidemob/services/api_service.dart';
+import 'package:cityguidemob/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive/hive.dart';
 import 'package:location/location.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   LatLng? _currentLocation;
   List<Place> _places = [];
   final List<Place> _favoritePlaces = [];
+  List<Place> _recentPlaces = [];
   late GoogleMapController _mapController;
   final ApiService _apiService = ApiService();
 
@@ -25,6 +29,33 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _getUserLocation();
+    _loadRecentPlaces(); // Recent places'i yükle
+    _getUserLocation();
+  }
+
+  Future<void> _loadRecentPlaces() async {
+    List<String> recentPlaceIds = await StorageService.getRecentPlaces();
+    if (recentPlaceIds.isNotEmpty) {
+      List<Place> places = await _apiService.fetchPlacesByIds(recentPlaceIds);
+      setState(() {
+        _recentPlaces =
+            places; // Burada listeyi doğru doldurduğunuzdan emin olun
+      });
+    }
+  }
+
+  void _addRecentPlace(String placeId) async {
+    List<String> recentPlaceIds = await StorageService.getRecentPlaces();
+    print(
+        'Before Adding: $recentPlaceIds'); // Kaydedilen mekan ID'lerini kontrol et
+    if (!recentPlaceIds.contains(placeId)) {
+      recentPlaceIds.add(placeId);
+      if (recentPlaceIds.length > 10) {
+        recentPlaceIds.removeAt(0); // Maksimum 10 mekan tut
+      }
+      print('After Adding: $recentPlaceIds'); // Güncellenen listeyi kontrol et
+      await StorageService.saveRecentPlaces(recentPlaceIds);
+    }
   }
 
   Future<void> _getUserLocation() async {
@@ -75,11 +106,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _toggleFavorite(Place place) {
+    final box = Hive.box<Place>('favorites');
     setState(() {
       if (_favoritePlaces.contains(place)) {
         _favoritePlaces.remove(place);
+        box.delete(place.id); // Favoriyi Hive'dan kaldır
       } else {
         _favoritePlaces.add(place);
+        box.put(place.id, place); // Yeni favoriyi Hive'a ekle
       }
     });
   }
@@ -87,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
+    print('Recent Places: $_recentPlaces');
 
     return Scaffold(
       appBar: AppBar(
@@ -100,6 +135,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 MaterialPageRoute(
                   builder: (context) =>
                       FavoritesScreen(favoritePlaces: _favoritePlaces),
+                ),
+              );
+            },
+          ),
+          // IconButton(
+          //   icon: const Icon(Icons.history),
+          //   onPressed: () {
+          //     print('Navigating to Recent Places Screen: $_recentPlaces');
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             RecentPlacesScreen(recentPlaces: _recentPlaces),
+          //       ),
+          //     );
+          //   },
+          // ),
+          IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: () {
+              print('Navigating to Recent Places Screen: $_recentPlaces');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      RecentPlacesScreen(recentPlaces: _recentPlaces),
                 ),
               );
             },
@@ -183,12 +244,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     onPressed: () => _toggleFavorite(place),
                                   ),
                                   onTap: () {
+                                    _addRecentPlace(
+                                        place.id); // Mekan ID'sini kaydet
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => DetailsScreen(
-                                          placeId: place.id,
-                                        ),
+                                        builder: (context) =>
+                                            DetailsScreen(placeId: place.id),
                                       ),
                                     );
                                   },

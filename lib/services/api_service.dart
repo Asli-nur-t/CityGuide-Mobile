@@ -60,4 +60,20 @@ class ApiService {
       throw Exception('Failed to fetch places: $e');
     }
   }
+
+  /// Belirtilen ID'lere göre mekan detaylarını çek
+
+  Future<List<Place>> fetchPlacesByIds(List<String> placeIds) async {
+    List<Place> places = [];
+    for (String placeId in placeIds) {
+      try {
+        Place place =
+            await fetchPlaceDetails(placeId); // Her ID için çekim yapılıyor
+        places.add(place);
+      } catch (e) {
+        print('Failed to fetch place for ID $placeId: $e');
+      }
+    }
+    return places;
+  }
 }
