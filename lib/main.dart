@@ -6,10 +6,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/welcome/welcome_screen.dart';
 import 'theme.dart';
 import 'package:flutter/material.dart';
+import 'package:chucker_flutter/chucker_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  ChuckerFlutter.showNotification = true;
 
   runApp(const MyApp());
 }

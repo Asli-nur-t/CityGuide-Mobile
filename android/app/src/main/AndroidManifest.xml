@@ -2,6 +2,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:label="smart"
         android:name="${applicationName}"
@@ -9,7 +13,7 @@
          <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCbXJ1tIrQcHhpdUAl0gBiNnhwZyu_wgBg" />
-
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
