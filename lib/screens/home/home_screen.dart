@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:cityguidemob/models/place.dart';
 import 'package:cityguidemob/screens/detail/details_screen.dart';
 import 'package:cityguidemob/screens/favorites/favorites_screen.dart';
 import 'package:cityguidemob/screens/recent_places/recent_places_screen.dart';
 import 'package:cityguidemob/services/api_service.dart';
 import 'package:cityguidemob/services/storage_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,6 +19,7 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+// bağlantı durumu kontrolü bağlantı keisldiğinde popup çöıkması connection plus paketi kullanıldı vs topla bana bş commit mesajı yaz
 
 class _HomeScreenState extends State<HomeScreen> {
   LatLng? _currentLocation;
@@ -25,12 +29,66 @@ class _HomeScreenState extends State<HomeScreen> {
   late GoogleMapController _mapController;
   final ApiService _apiService = ApiService();
 
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  bool _isConnected = true;
+
   @override
   void initState() {
     super.initState();
     _getUserLocation();
     _loadRecentPlaces(); // Recent places'i yükle
     _getUserLocation();
+    _startConnectivityCheck();
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
+  void _startConnectivityCheck() {
+    _connectivitySubscription =
+        Connectivity().onConnectivityChanged.listen((dynamic result) {
+      if (result is List<ConnectivityResult>) {
+        bool isConnected = result.contains(ConnectivityResult.wifi) ||
+            result.contains(ConnectivityResult.mobile);
+        setState(() {
+          _isConnected = isConnected;
+        });
+        if (!_isConnected) {
+          _showConnectionLostPopup();
+        }
+      } else if (result is ConnectivityResult) {
+        bool isConnected = result != ConnectivityResult.none;
+        setState(() {
+          _isConnected = isConnected;
+        });
+        if (!_isConnected) {
+          _showConnectionLostPopup();
+        }
+      } else {
+        print('Unsupported connectivity type: ${result.runtimeType}');
+      }
+    });
+  }
+
+  void _showConnectionLostPopup() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Bağlantı Kesildi'),
+        content: const Text('İnternet bağlantınız kesildi.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Tamam'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _loadRecentPlaces() async {
@@ -138,6 +196,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             },
+          ),
+          Icon(
+            Icons.circle,
+            color: _isConnected ? Colors.green : Colors.grey,
+            size: 16,
           ),
           // IconButton(
           //   icon: const Icon(Icons.history),
