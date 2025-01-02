@@ -13,8 +13,8 @@ CityGuide, kullanıcıların bulunduğu yere yakın turistik yerleri keşfetmele
 ---
 
 ## Özellikler ✨
-- **Turistik Yerleri Keşfet:** Konumunuza göre en yakın 5 turistik yeri görüntüleyin.
-- **İnteraktif Harita:** Google Maps entegrasyonu ile turistik yerleri gezin.
+- **Şehri Keşfet:** Konumunuza göre en yakın yeme, gezme, konaklama yeri görüntüleyin.
+- **İnteraktif Harita:** Google Maps entegrasyonu ile turistik yerleri gezin yol tarifi alın.
 - **Çevrimdışı Destek:** Hive kullanarak verileri çevrimdışı erişim için yerel olarak kaydedin.
 - **Firebase Kimlik Doğrulama:** Güvenli oturum açma ve oturum yönetimi.
 - **Anlık Bildirimler:** Yeni yerler hakkında güncellemeler alın.
@@ -95,7 +95,7 @@ CityGuide helps users discover tourist attractions near their location, view the
 ---
 
 ## Features ✨
-- **Discover Attractions:** See the top 5 nearby attractions based on your location.
+- **Discover Attractions:** View the closest places to eat, visit, and stay based on your location.
 - **Interactive Map:** Navigate attractions with Google Maps integration.
 - **Offline Support:** Save data locally using Hive for offline access.
 - **Firebase Authentication:** Secure login and session management.
