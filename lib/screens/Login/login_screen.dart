@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'Discover the best places in your city',
+                    'Şehrindeki en iyi yerleri keşfet',
                     style: TextStyle(
                       fontSize: 18,
                       color: kContentColorDarkTheme,
@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextField(
                             controller: emailController,
                             decoration: InputDecoration(
-                              labelText: 'Email Address',
+                              labelText: 'Email Adresi',
                               labelStyle: const TextStyle(
                                 color: Color(kTextFieldLabelColor),
                               ),
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: passwordController,
                             obscureText: _obscurePassword,
                             decoration: InputDecoration(
-                              labelText: 'Password',
+                              labelText: 'Şifre',
                               labelStyle: const TextStyle(
                                 color: Color(kTextFieldLabelColor),
                               ),
@@ -246,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor: kButtonColor,
                             ),
                             child: const Text(
-                              'Log In',
+                              'Giriş',
                               style: TextStyle(
                                 fontSize: 18,
                                 color: kContentColorDarkTheme,
@@ -263,7 +263,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pushNamed(context, '/signup');
                     },
                     child: const Text(
-                      'New around here? Create An Account',
+                      'Buralarda yeni misiniz? Hesap Oluşturun',
                       style: TextStyle(
                         color: kContentColorDarkTheme,
                         decoration: TextDecoration.underline,
