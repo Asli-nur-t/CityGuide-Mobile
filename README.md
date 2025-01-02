@@ -2,6 +2,7 @@
 
 
 # CityGuide 🗺️
+video link: https://drive.google.com/file/d/1Bsb4EXE02fQwvzhzsCYjKsNrcUKglN-G/view?usp=sharing
 
 CityGuide, kullanıcıların çevresindeki turistik yerleri kolayca keşfetmelerine yardımcı olmak için tasarlanmış bir akıllı şehir rehberi mobil uygulamasıdır. Uygulama, konum tabanlı öneriler, çevrimdışı veri desteği ve Firebase kimlik doğrulama gibi özellikleri bir araya getirerek sezgisel ve güvenilir bir kullanıcı deneyimi sunar.
 
