@@ -14,7 +14,7 @@ class WelcomeScreen extends StatelessWidget {
           // Resmi tam ekran olarak ayarla
           Positioned.fill(
             child: Image.asset(
-              "assets/images/welcome_image.png",
+              "assets/images/italy.jpg",
               fit: BoxFit.cover, // Ekranı tamamen kaplamasını sağlar
             ),
           ),
@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                           0.9, // Ekranın %90'ını kaplayacak şekilde ayarlandı
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      color: Colors.deepOrange.withOpacity(0.3),
+                      color: Colors.deepOrange.withOpacity(0.0),
                       child: Text(
                         "Seyahat Uygulamana \n Hoşgeldin!",
                         textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
                           0.9, // Ekranın %90'ını kaplayacak şekilde ayarlandı
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      color: Colors.blueGrey.withOpacity(0.3),
+                      color: Colors.blueGrey.withOpacity(0.0),
                       child: Text(
                         "CityGuide ile en popüler yerleri, gizli köşeleri  ve en iyi restoranları keşfedin.",
                         textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ class WelcomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Skip",
+                          "Atla",
                           style:
                               Theme.of(context).textTheme.bodyLarge!.copyWith(
                                     color: Colors.white.withOpacity(0.8),
