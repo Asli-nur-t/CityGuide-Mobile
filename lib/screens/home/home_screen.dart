@@ -1,5 +1,7 @@
 import 'dart:async';
 
+
+import 'package:cityguidemob/constants.dart';
 import 'package:cityguidemob/models/place.dart';
 import 'package:cityguidemob/screens/detail/details_screen.dart';
 import 'package:cityguidemob/screens/favorites/favorites_screen.dart';
@@ -28,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Place> _recentPlaces = [];
   late GoogleMapController _mapController;
   final ApiService _apiService = ApiService();
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  bool _isConnected = true;
 
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   bool _isConnected = true;
@@ -179,14 +183,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
-    print('Recent Places: $_recentPlaces');
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CityGuide'),
+        iconTheme: const IconThemeData(
+          color: kIconColorNav, // Geri tuşu rengini burada ayarlıyoruz
+        ),
+        backgroundColor: kPrimaryColor,
+        title: const Text(
+          'CityGuide',
+          style: TextStyle(color: kIconColorNav),
+        ),
         actions: [
+          Icon(
+            Icons.circle,
+            color: _isConnected
+                ? const Color.fromARGB(255, 103, 158, 105)
+                : Colors.grey,
+            size: 2,
+          ),
           IconButton(
-            icon: const Icon(Icons.favorite),
+            icon: const Icon(Icons.favorite, color: kIconColorNav),
             onPressed: () {
               Navigator.push(
                 context,
@@ -197,6 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
+
           Icon(
             Icons.circle,
             color: _isConnected ? Colors.green : Colors.grey,
@@ -215,10 +233,10 @@ class _HomeScreenState extends State<HomeScreen> {
           //     );
           //   },
           // ),
+
           IconButton(
-            icon: const Icon(Icons.history),
+            icon: const Icon(Icons.history, color: kIconColorNav),
             onPressed: () {
-              print('Navigating to Recent Places Screen: $_recentPlaces');
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -233,17 +251,17 @@ class _HomeScreenState extends State<HomeScreen> {
               await FirebaseAuth.instance.signOut();
               Navigator.pushReplacementNamed(context, '/login');
             },
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: kIconColorNav),
           ),
         ],
       ),
       body: Column(
         children: [
-          // Harita Alanı
           Expanded(
             flex: 3,
             child: _currentLocation == null
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: CircularProgressIndicator(color: kPrimaryColor))
                 : GoogleMap(
                     initialCameraPosition: CameraPosition(
                       target: _currentLocation!,
@@ -263,7 +281,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     myLocationButtonEnabled: true,
                   ),
           ),
-          // Mekan Listesi
           Expanded(
             flex: 2,
             child: Padding(
@@ -274,17 +291,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'Welcome, ${user?.email ?? 'Guest'}!',
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: kContentColorLightTheme,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Text(
                     'Recommended Places:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: kContentColorLightTheme,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Expanded(
                     child: _places.isEmpty
-                        ? const Center(child: Text('No places found'))
+                        ? const Center(
+                            child: Text(
+                              'No places found',
+                              style: TextStyle(color: kContentColorLightTheme),
+                            ),
+                          )
                         : ListView.builder(
                             itemCount: _places.length,
                             itemBuilder: (context, index) {
@@ -292,23 +321,32 @@ class _HomeScreenState extends State<HomeScreen> {
                               final isFavorite =
                                   _favoritePlaces.contains(place);
                               return Card(
+                                color: kBackgroundColor,
                                 child: ListTile(
-                                  leading: const Icon(Icons.place),
-                                  title: Text(place.name),
+                                  leading: const Icon(Icons.place,
+                                      color: kPrimaryColor),
+                                  title: Text(
+                                    place.name,
+                                    style: const TextStyle(
+                                        color: kContentColorLightTheme),
+                                  ),
                                   subtitle: Text(
-                                      'Rating: ${place.rating.toString()}'),
+                                    'Rating: ${place.rating.toString()}',
+                                    style: const TextStyle(
+                                        color: kContentColorLightTheme),
+                                  ),
                                   trailing: IconButton(
                                     icon: Icon(
                                       isFavorite
                                           ? Icons.favorite
                                           : Icons.favorite_border,
-                                      color: isFavorite ? Colors.red : null,
+                                      color: isFavorite
+                                          ? kPrimaryColor
+                                          : kIconColor,
                                     ),
                                     onPressed: () => _toggleFavorite(place),
                                   ),
                                   onTap: () {
-                                    _addRecentPlace(
-                                        place.id); // Mekan ID'sini kaydet
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

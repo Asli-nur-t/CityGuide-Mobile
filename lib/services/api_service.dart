@@ -1,6 +1,7 @@
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:cityguidemob/models/place.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ApiService {
@@ -12,7 +13,7 @@ class ApiService {
 
   /// Fetch place details by placeId
   Future<Place> fetchPlaceDetails(String placeId) async {
-    const String apiKey = 'AIzaSyCbXJ1tIrQcHhpdUAl0gBiNnhwZyu_wgBg';
+    final String apiKey = dotenv.env['GOOGLE_MAPS_API_KEY']!;
     final String url =
         'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&key=$apiKey';
 
