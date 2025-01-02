@@ -40,23 +40,33 @@ class SigninOrSignupScreen extends StatelessWidget {
               ),
               const Spacer(),
               PrimaryButton(
-                text: "Sign In",
+                text: "Giriş Yap",
                 press: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const LoginScreen(),
                   ),
                 ),
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: kTextFieldFillColor,
+                ),
               ),
               const SizedBox(height: kDefaultPadding * 1.5),
               PrimaryButton(
                 color: Theme.of(context).colorScheme.secondary,
-                text: "Sign Up",
+                text: "Kaydol",
                 press: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const SignUpScreen(),
                   ),
+                ),
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: kTextFieldFillColor,
                 ),
               ),
               const Spacer(flex: 3),
