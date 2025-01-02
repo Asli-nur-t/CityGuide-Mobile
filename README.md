@@ -6,7 +6,7 @@ CityGuide is a comprehensive mobile application designed to help users explore t
 ## Application Demo 🎥
 Below is a quick demo of the CityGuide application in action:
 
-![CityGuide Demo](assets/screenshots/demo.gif)
+![CityGuide Demo](/Users/aslinurtopcu/Downloads/CityGuide-Mobile-aslinur/assets/screenshots/demo.gif)
 
 
 ## Features ✨
