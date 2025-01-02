@@ -1,5 +1,6 @@
 import 'dart:async';
 
+
 import 'package:cityguidemob/constants.dart';
 import 'package:cityguidemob/models/place.dart';
 import 'package:cityguidemob/screens/detail/details_screen.dart';
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+// bağlantı durumu kontrolü bağlantı keisldiğinde popup çöıkması connection plus paketi kullanıldı vs topla bana bş commit mesajı yaz
 
 class _HomeScreenState extends State<HomeScreen> {
   LatLng? _currentLocation;
@@ -28,6 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Place> _recentPlaces = [];
   late GoogleMapController _mapController;
   final ApiService _apiService = ApiService();
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  bool _isConnected = true;
+
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   bool _isConnected = true;
 
@@ -209,6 +214,26 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
+
+          Icon(
+            Icons.circle,
+            color: _isConnected ? Colors.green : Colors.grey,
+            size: 16,
+          ),
+          // IconButton(
+          //   icon: const Icon(Icons.history),
+          //   onPressed: () {
+          //     print('Navigating to Recent Places Screen: $_recentPlaces');
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             RecentPlacesScreen(recentPlaces: _recentPlaces),
+          //       ),
+          //     );
+          //   },
+          // ),
+
           IconButton(
             icon: const Icon(Icons.history, color: kIconColorNav),
             onPressed: () {
