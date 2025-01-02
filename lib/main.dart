@@ -3,6 +3,7 @@
 import 'package:cityguidemob/models/place.dart';
 import 'package:cityguidemob/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -18,6 +19,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(PlaceAdapter()); // Adapter'i kaydet
   await Hive.openBox<Place>('favorites'); // 'favorites' kutusunu aç
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

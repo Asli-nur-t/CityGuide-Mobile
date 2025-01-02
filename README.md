@@ -43,23 +43,25 @@ CityGuide, kullanıcıların bulunduğu yere yakın turistik yerleri keşfetmele
 ## Bağımlılıklar 📦
 Proje, çeşitli işlevler için aşağıdaki paketleri kullanır:
 
-| Bağımlılık               | Versiyon  | Amacı                                                  |
-|--------------------------|-----------|-------------------------------------------------------|
-| flutter                  | ^3.6.0    | Flutter SDK                                           |
-| build_runner             | ^2.4.14   | Kod üretimi                                           |
-| flutter_translate        | ^4.1.0    | Uygulama yerelleştirme                                |
-| firebase_auth            | ^5.3.4    | Kullanıcı kimlik doğrulama                            |
-| firebase_core            | ^3.9.0    | Firebase çekirdek entegrasyonu                       |
-| google_maps_flutter      | ^2.10.0   | Google Maps entegrasyonu                             |
-| geolocator               | ^13.0.2   | GPS konum servisleri                                 |
-| dio                      | ^5.7.0    | API çağrıları için HTTP istemcisi                    |
-| shared_preferences       | ^2.3.4    | Kalıcı anahtar-değer depolama                        |
-| location                 | ^6.0.2    | Cihaz konumuna erişim                                 |
-| chucker_flutter          | ^1.8.3    | API hata ayıklama ve günlükleme                      |
-| hive                     | ^2.2.3    | Hafif yerel veritabanı                               |
-| hive_flutter             | ^1.1.0    | Hive ile Flutter entegrasyonu                        |
-| hive_generator           | ^2.0.1    | Hive modelleri için kod üretimi                      |
-| connectivity_plus        | ^6.1.1    | Ağ bağlantısı durumu kontrolü                        |
+
+| Bağımlılık                | Versiyon   | Amacı                                                    |
+|---------------------------|-----------|------------------------------------------------------------|
+| flutter                   | ^3.6.0    | Flutter SDK                                                |
+| build_runner              | ^2.4.14   | Code generation                                            |
+| flutter_translate         | ^4.1.0    | App localization                                           |
+| firebase_auth             | ^5.3.4    | User authentication                                        |
+| firebase_core             | ^3.9.0    | Firebase core integration                                  |
+| google_maps_flutter       | ^2.10.0   | Google Maps integration                                    |
+| geolocator                | ^13.0.2   | GPS location services                                      |
+| dio                       | ^5.7.0    | HTTP client for API calls                                  |
+| shared_preferences        | ^2.3.4    | Persistent key-value storage                               |
+| location                  | ^6.0.2    | Access to device location                                  |
+| chucker_flutter           | ^1.8.3    | API debugging and logging                                  |
+| hive                      | ^2.2.3    | Lightweight local database                                 |
+| hive_flutter              | ^1.1.0    | Hive integration with Flutter                              |
+| hive_generator            | ^2.0.1    | Code generation for Hive models                           |
+| connectivity_plus         | ^6.1.1    | Network connectivity status                               |
+| flutter_dotenv            | ^5.2.1    | Load environment variables from `.env` files              |
 
 ---
 
@@ -134,6 +136,7 @@ The project uses the following packages for various functionalities:
 | hive_flutter              | ^1.1.0    | Hive integration with Flutter                              |
 | hive_generator            | ^2.0.1    | Code generation for Hive models                           |
 | connectivity_plus         | ^6.1.1    | Network connectivity status                               |
+| flutter_dotenv            | ^5.2.1    | Load environment variables from `.env` files              |
 
 ---
 
