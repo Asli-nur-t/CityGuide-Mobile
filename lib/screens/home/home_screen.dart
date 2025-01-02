@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
             color: _isConnected
                 ? const Color.fromARGB(255, 103, 158, 105)
                 : Colors.grey,
-            size: 25,
+            size: 2,
           ),
           IconButton(
             icon: const Icon(Icons.favorite, color: kIconColorNav),
